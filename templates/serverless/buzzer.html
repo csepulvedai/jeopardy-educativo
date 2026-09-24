@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0a192f">
+  <title>Pulsador Jeopardy (Web)</title>
+  <link rel="stylesheet" href="buzzer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Oswald:wght@600&display=swap" rel="stylesheet">
+  <script src="peerjs.min.js"></script>
+</head>
+<body>
+  <div id="buzzer-app">
+    <!-- Registration Screen -->
+    <div id="screen-register" class="screen">
+      <div class="register-card">
+        <div class="register-badge">JEOPARDY EDUCATIVO</div>
+        <h2>Únete a la Partida</h2>
+        <p>Ingresa la sala y el nombre de tu equipo para comenzar:</p>
+
+        <form id="form-register">
+          <div class="input-group">
+            <label for="input-room-code" class="input-label">CÓDIGO DE SALA:</label>
+            <input 
+              type="text" 
+              id="input-room-code" 
+              placeholder="Ej: ABCD" 
+              maxlength="10" 
+              autocomplete="off" 
+              style="text-transform: uppercase; font-size: 1.3rem; letter-spacing: 2px;"
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <label for="input-team-name" class="input-label">NOMBRE DE EQUIPO:</label>
+            <input 
+              type="text" 
+              id="input-team-name" 
+              placeholder="Ej: Grupo 1 / Los Evaluadores" 
+              maxlength="24" 
+              autocomplete="off" 
+              required
+            >
+          </div>
+
+          <button type="submit" id="btn-submit-join" class="btn-join">¡Entrar al Juego!</button>
+          <p id="join-status-msg" class="join-status-msg hidden">Conectando con la pantalla del profesor...</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Active Buzzer Screen -->
+    <div id="screen-buzzer" class="screen hidden">
+      <!-- Mobile Header -->
+      <header class="buzzer-header">
+        <div class="team-badge">
+          <div id="header-avatar" class="avatar">EQ</div>
+          <div class="team-meta">
+            <span id="header-team-name" class="team-title">Mi Equipo</span>
+            <span id="header-score" class="score-display">0 pts</span>
+          </div>
+        </div>
+        <div class="conn-badge">
+          <span class="live-dot"></span>
+          <span>En vivo</span>
+        </div>
+      </header>
+
+      <!-- Center Buzzer Area -->
+      <main class="buzzer-main">
+        <div class="prompt-box">
+          <span id="prompt-status" class="prompt-text">Atento a la pantalla...</span>
+        </div>
+
+        <button id="main-buzzer-btn" class="big-buzzer state-idle" disabled>
+          <div class="buzzer-inner">
+            <span id="buzzer-icon" class="buzzer-symbol">⏸️</span>
+            <span id="buzzer-label" class="buzzer-label">ESPERA</span>
+          </div>
+          <div class="buzzer-reflection"></div>
+        </button>
+
+        <div id="reaction-notice" class="reaction-notice hidden">
+          <span id="reaction-text"></span>
+        </div>
+      </main>
+
+      <!-- Footer Info -->
+      <footer class="buzzer-footer">
+        <span>Sigue las preguntas en la pantalla del profesor</span>
+      </footer>
+    </div>
+
+    <!-- Screen 3: Final Podium for Students -->
+    <div id="screen-podium" class="screen hidden">
+      <div class="podium-result-card">
+        <div id="podium-trophy" class="result-trophy">🏆</div>
+        <h2 id="podium-status-title">¡PARTIDA FINALIZADA!</h2>
+        <div id="podium-my-rank" class="my-rank-badge">1º LUGAR</div>
+        <p id="podium-my-team" class="my-team-name">Mi Equipo</p>
+        <p id="podium-my-score" class="my-team-score">0 pts</p>
+        <div id="podium-my-msg" class="podium-msg">¡Felicitaciones por una excelente participación!</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="buzzer.js"></script>
+</body>
+</html>

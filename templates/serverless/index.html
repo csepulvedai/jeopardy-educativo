@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeopardy: IA en Procesos Evaluativos (Web)</title>
+  <link rel="stylesheet" href="host.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <script src="peerjs.min.js"></script>
+  <script src="qrcode.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Top Navigation Header -->
+    <header class="top-header">
+      <div class="logo-area">
+        <span class="game-badge">SÍNTESIS DEL CURSO</span>
+        <h1>JEOPARDY: IA EN EVALUACIÓN</h1>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-copy-link" class="btn btn-zoom" title="Copiar enlace para los alumnos">
+          📋 Copiar Link Alumnos
+        </button>
+        <button id="btn-show-qr" class="btn btn-info" title="Mostrar Código QR en grande">
+          📱 Código QR
+        </button>
+        <button id="btn-final-jeopardy" class="btn btn-final" title="Ir a la Pregunta Final">
+          🏆 Final Jeopardy
+        </button>
+        <button id="btn-end-game" class="btn btn-podium" title="Finalizar y mostrar podio">
+          👑 Podio y Ganador
+        </button>
+        <button id="btn-sound-toggle" class="btn btn-icon" title="Silenciar / Activar sonido">
+          🔊
+        </button>
+        <button id="btn-fullscreen" class="btn btn-icon" title="Pantalla Completa">
+          ⛶
+        </button>
+        <button id="btn-reset" class="btn btn-icon btn-danger" title="Reiniciar Tablero">
+          🔄
+        </button>
+      </div>
+    </header>
+
+    <!-- Subheader with room and connection info -->
+    <div class="connection-bar">
+      <div class="conn-item">
+        <span class="conn-dot" id="conn-dot"></span>
+        <span>Sala: <strong id="room-code-display" class="room-code-badge">...</strong></span>
+      </div>
+      <div class="conn-item">
+        <span>👥 Equipos conectados: <strong id="team-count">0</strong></span>
+      </div>
+      <div class="conn-item url-display">
+        <span>Link para Alumnos: <strong id="student-url-display">Cargando...</strong></span>
+      </div>
+    </div>
+
+    <!-- Main Jeopardy Board -->
+    <main class="board-container">
+      <div class="board-grid" id="board-grid">
+        <!-- Generated dynamically -->
+      </div>
+    </main>
+
+    <!-- Bottom Scoreboard -->
+    <footer class="scoreboard-footer">
+      <div class="scoreboard-title">MARCADOR EN VIVO:</div>
+      <div class="teams-container" id="teams-container">
+        <div class="empty-teams-msg">Esperando a que los alumnos se unan desde sus móviles...</div>
+      </div>
+    </footer>
+
+    <!-- Question Modal -->
+    <div id="question-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span id="modal-category" class="badge-category">Categoría</span>
+          <span id="modal-points" class="badge-points">$100</span>
+        </div>
+
+        <div class="modal-body">
+          <p id="modal-question-text" class="question-text">Texto de la pregunta...</p>
+          
+          <!-- Buzzer Status Banner -->
+          <div id="buzzer-status-banner" class="buzzer-banner state-idle">
+            <div class="buzzer-status-icon">⏸️</div>
+            <div class="buzzer-status-info">
+              <h3 id="buzzer-headline">Buzzer en Espera</h3>
+              <p id="buzzer-subtext">Lee la pregunta a la clase y presiona "Activar Buzzer".</p>
+            </div>
+            <div id="buzzer-reaction-time" class="reaction-badge hidden">0.00s</div>
+          </div>
+
+          <!-- Answer & Teacher Guide -->
+          <div id="teacher-guide-box" class="guide-box hidden">
+            <div class="guide-header">
+              <strong>💡 Respuesta correcta:</strong>
+            </div>
+            <p id="modal-answer-text" class="answer-text"></p>
+            <div class="guide-footer">
+              <strong>📖 Guía docente:</strong> <span id="modal-guide-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="modal-controls">
+          <button id="btn-activate-buzzer" class="btn btn-action btn-activate">
+            ⚡ Activar Buzzer <span class="hotkey">[Espacio]</span>
+          </button>
+          <button id="btn-correct" class="btn btn-action btn-correct" disabled>
+            ✅ ¡Correcto! <span class="hotkey">[C]</span>
+          </button>
+          <button id="btn-incorrect" class="btn btn-action btn-incorrect" disabled>
+            ❌ Incorrecto / Rebote <span class="hotkey">[X]</span>
+          </button>
+          <button id="btn-toggle-answer" class="btn btn-action btn-reveal">
+            👁️ Ver Respuesta <span class="hotkey">[R]</span>
+          </button>
+          <button id="btn-close-modal" class="btn btn-action btn-close">
+            Volver al Tablero <span class="hotkey">[Esc]</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qr-modal" class="modal-overlay hidden">
+      <div class="modal-content qr-modal-box">
+        <h2>Únete con tu Celular o Pestaña</h2>
+        <p>Escanea con la cámara de tu celular para jugar:</p>
+        <div class="qr-image-wrapper" id="qr-container"></div>
+        <div class="qr-url-box">
+          <input type="text" id="qr-url-input" readonly>
+          <button id="btn-copy-qr-url" class="btn btn-zoom">Copiar</button>
+        </div>
+        <button id="btn-close-qr" class="btn btn-close">Cerrar</button>
+      </div>
+    </div>
+
+    <!-- Final Jeopardy Modal -->
+    <div id="final-modal" class="modal-overlay hidden">
+      <div class="modal-content final-modal-box">
+        <div class="final-header">
+          <span class="badge-final">PREGUNTA DEFINITIVA</span>
+          <h2 id="final-category">Categoría Final</h2>
+        </div>
+        <div class="final-body">
+          <p id="final-question-text" class="question-text"></p>
+          <div id="final-guide-box" class="guide-box hidden">
+            <p><strong>Respuesta esperada / Ejes clave:</strong></p>
+            <p id="final-answer-text"></p>
+          </div>
+        </div>
+        <div class="final-controls">
+          <button id="btn-final-activate" class="btn btn-action btn-activate">⚡ Activar Buzzer Final</button>
+          <button id="btn-final-reveal" class="btn btn-action btn-reveal">👁️ Mostrar Respuesta</button>
+          <button id="btn-close-final" class="btn btn-action btn-close">Volver al Juego</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Winners Podium Modal -->
+    <div id="podium-modal" class="modal-overlay hidden">
+      <canvas id="confetti-canvas"></canvas>
+      <div class="modal-content podium-modal-box">
+        <div class="podium-header">
+          <div class="crown-icon">👑</div>
+          <h2>¡PODIO DE CAMPEONES!</h2>
+          <p>Síntesis del Curso: Integración de IA en Procesos Evaluativos</p>
+        </div>
+
+        <div class="podium-body">
+          <div class="podium-stage" id="podium-stage"></div>
+          <div class="other-teams-list" id="other-teams-list"></div>
+        </div>
+
+        <div class="podium-controls">
+          <button id="btn-close-podium" class="btn btn-action btn-close">Cerrar</button>
+          <button id="btn-new-game" class="btn btn-action btn-activate">🔄 Nueva Partida</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="host.js"></script>
+</body>
+</html>

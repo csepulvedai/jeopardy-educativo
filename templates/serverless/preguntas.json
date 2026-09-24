@@ -1,0 +1,196 @@
+{
+  "titulo": "Jeopardy: IA en los Procesos Evaluativos",
+  "descripcion": "Sesión de síntesis y evaluación formativa del curso sobre integración de IA en evaluación educativa.",
+  "categorias": [
+    {
+      "nombre": "Modelos y Fundamentos de IA",
+      "descripcion": "Conceptos clave sobre LLMs, alucinaciones, contexto y rol del docente",
+      "preguntas": [
+        {
+          "puntos": 100,
+          "pregunta": "¿Qué es una 'alucinación' en un modelo de lenguaje (LLM) y por qué representa un riesgo crítico en la evaluación educativa?",
+          "respuesta": "Es cuando la IA genera información falsa, inventada o sin sustento fáctico con total seguridad sintáctica. En evaluación es crítico porque puede generar reactivos con respuestas erróneas, criterios ficticios o juicios evaluativos equivocados.",
+          "guia_docente": "Recordar que la IA es probabilística y asociativa, no una base de datos de verdades infalibles."
+        },
+        {
+          "puntos": 200,
+          "pregunta": "En las clases comparamos herramientas como ChatGPT, Claude y Gemini. ¿Qué ventaja pedagógica ofrece alimentar a la IA con 'insumos propios' (papers, currículum, pautas) antes de pedirle que cree evaluaciones?",
+          "respuesta": "Contextualiza al modelo con el marco curricular real del docente, delimita su base de conocimiento y reduce drásticamente las alucinaciones al forzarlo a ceñirse al material proporcionado.",
+          "guia_docente": "Hacer referencia a lo visto en las clases 2 y 3 sobre proveer contexto antes de la tarea."
+        },
+        {
+          "puntos": 300,
+          "pregunta": "¿Por qué se enseñó la técnica de pedirle a la IA 'un plan o propuesta previa de diseño' antes de pedirle de inmediato el instrumento o juego completo?",
+          "respuesta": "Porque permite al docente revisar, ajustar y validar la estructura pedagógica (criterios, tiempos, niveles de complejidad) antes de que el modelo gaste tokens en redactar, evitando retrabajos y garantizando alineamiento.",
+          "guia_docente": "Técnica clave de prompting: 'Primero proponme un plan, y una vez que lo apruebe, construyes el contenido'."
+        },
+        {
+          "puntos": 400,
+          "pregunta": "Desde el enfoque del 'Alineamiento Constructivo' (Biggs), ¿cuál es el error más frecuente que comete un docente al incorporar IA en sus evaluaciones?",
+          "respuesta": "Generar actividades o pruebas atractivas con IA que no tienen coherencia ni alineación directa con los Resultados de Aprendizaje previstos ni con las actividades formativas previas.",
+          "guia_docente": "La tecnología y la novedad de la IA nunca deben desplazar al propósito pedagógico."
+        },
+        {
+          "puntos": 500,
+          "pregunta": "¿Cuál es la diferencia fundamental entre concebir la IA como 'sustituto del evaluador' versus como 'copiloto de la evaluación'?",
+          "respuesta": "Como sustituto se delega ciegamente el juicio y la calificación a la máquina (perdiendo validez pedagógica y ética); como copiloto, la IA asiste en borradores, variedad de reactivos y análisis de datos, pero el juicio evaluativo, la empatía y la retroalimentación final corresponden al docente.",
+          "guia_docente": "Concepto transversal del curso: el docente en el centro (Human-in-the-loop)."
+        }
+      ]
+    },
+    {
+      "nombre": "Ingeniería de Prompts Evaluativos",
+      "descripcion": "Estructura de prompts, roles, restricciones y reactivos",
+      "preguntas": [
+        {
+          "puntos": 100,
+          "pregunta": "¿Cuál es el primer elemento indispensable en un 'Mega Prompt' para que la IA diseñe un instrumento de evaluación con criterio pedagógico riguroso?",
+          "respuesta": "La asignación de un Rol o Perfil Experto (ej. 'Asume el rol de un especialista en diseño instruccional y evaluación formativa en educación superior').",
+          "guia_docente": "Visto en la Clase 5: la personalización del rol activa el vocabulario y lógica pedagógica adecuada."
+        },
+        {
+          "puntos": 200,
+          "pregunta": "Si un profesor ingresa el prompt: 'Hazme 5 preguntas de selección múltiple sobre la fotosíntesis', ¿qué deficiencia pedagógica suelen presentar las preguntas generadas?",
+          "respuesta": "Suelen quedarse en el nivel más bajo de la taxonomía de Bloom (memorización o recuerdo simple), con distractores obvios o poco plausibles y sin contexto de aplicación real.",
+          "guia_docente": "Preguntar al grupo cómo transformarían ese prompt básico en uno de orden superior."
+        },
+        {
+          "puntos": 300,
+          "pregunta": "¿En qué consiste la técnica de 'Few-Shot Prompting' y cómo mejora la creación de reactivos de prueba con IA?",
+          "respuesta": "Consiste en incluir en el prompt uno o dos ejemplos reales del tipo de pregunta, formato y estilo de distractor que se busca, para que la IA replique ese estándar con exactitud.",
+          "guia_docente": "Un buen ejemplo guía al modelo mucho más eficazmente que largos párrafos de instrucciones abstractas."
+        },
+        {
+          "puntos": 400,
+          "pregunta": "¿Cuáles son los 4 componentes estructurales que debe tener un prompt docente para generar evaluaciones auténticas y estructuradas?",
+          "respuesta": "1. Rol/Identidad del modelo, 2. Contexto pedagógico (nivel, público, temática), 3. Tarea con restricciones explícitas (Taxonomía, tipo de reactivo), y 4. Formato de salida (tablas, claves justificadas, criterios).",
+          "guia_docente": "La fórmula de prompting enseñada durante las cátedras."
+        },
+        {
+          "puntos": 500,
+          "pregunta": "¿Cómo instruir a la IA en el prompt para que los distractores de una prueba de selección múltiple tengan un valor pedagógico diagnóstico?",
+          "respuesta": "Pidiéndole que cada distractor corresponda a un error conceptual, sesgo o razonamiento equivocado común de los estudiantes (misconceptions), e incluyendo una breve justificación diagnóstica por opción.",
+          "guia_docente": "Un buen distractor ayuda a diagnosticar exactamente qué parte del concepto no se consolidó."
+        }
+      ]
+    },
+    {
+      "nombre": "Rúbricas e Instrumentos con IA",
+      "descripcion": "Criterios, niveles de desempeño, evidencias observables y análisis de datos",
+      "preguntas": [
+        {
+          "puntos": 100,
+          "pregunta": "¿Cuál es la diferencia principal entre una rúbrica analítica y una rúbrica holística al momento de diseñarlas con apoyo de IA?",
+          "respuesta": "La analítica desglosa la tarea en múltiples criterios independientes con niveles de logro detallados; la holística evalúa el desempeño de forma global e integrada en un único puntaje o descriptor.",
+          "guia_docente": "Visto en la Clase 6 al comparar los tipos de instrumentos evaluativos."
+        },
+        {
+          "puntos": 200,
+          "pregunta": "En la Clase 6 se analizó por qué una IA puede entregar una 'rúbrica deficiente'. ¿Cuál es el error típico en la redacción de los descriptores de desempeño cuando el prompt no es preciso?",
+          "respuesta": "Uso de adjetivos vagos y subjetivos (como 'bueno', 'regular', 'adecuado', 'excelente') en lugar de evidencias concretas, conductas observables y criterios medibles.",
+          "guia_docente": "Énfasis central de la sesión de rúbricas: evitar la ambigüedad cualitativa."
+        },
+        {
+          "puntos": 300,
+          "pregunta": "¿Por qué es pedagógicamente valioso socializar la rúbrica con los estudiantes ANTES de que realicen la tarea evaluativa?",
+          "respuesta": "Brinda transparencia al proceso, orienta el esfuerzo del estudiante, modela las expectativas de calidad y fomenta la autorregulación y autoevaluación formativa.",
+          "guia_docente": "Mencionado en la Clase 6: la rúbrica como herramienta formativa y no solo de castigo/calificación."
+        },
+        {
+          "puntos": 400,
+          "pregunta": "¿Cómo podemos aprovechar la IA después de aplicar una evaluación para mejorar la retroalimentación formativa del grupo?",
+          "respuesta": "Entregándole los datos o porcentajes de logro por criterio a la IA para que identifique patrones, detecte las dificultades más frecuentes y sugiera acciones remediales para la siguiente clase.",
+          "guia_docente": "Visto en la Clase 6: análisis de porcentajes globales y nudos de aprendizaje."
+        },
+        {
+          "puntos": 500,
+          "pregunta": "Al comparar el diseño de rúbricas entre ChatGPT, Claude y Gemini en clase, ¿qué factor resultó más determinante que la propia marca del modelo?",
+          "respuesta": "La especificidad, marco de referencia e insumos del prompt base proporcionado por el docente (nivel educativo, criterios previos, resultados esperados y restricciones).",
+          "guia_docente": "Un buen prompt contextualizado en cualquier IA supera a un prompt pobre en el modelo más costoso."
+        }
+      ]
+    },
+    {
+      "nombre": "Cápsulas Web y Audio Educativo",
+      "descripcion": "NotebookLM, podcasts pedagógicos, objetos digitales y Google Sites",
+      "preguntas": [
+        {
+          "puntos": 100,
+          "pregunta": "¿Qué herramienta de IA basada en fuentes (vista en la Clase 4) permite subir documentos extensos (papers) y generar automáticamente resúmenes en formato podcast de audio?",
+          "respuesta": "NotebookLM (de Google).",
+          "guia_docente": "Herramienta trabajada en la sesión 4 para análisis de textos académicos."
+        },
+        {
+          "puntos": 200,
+          "pregunta": "¿Por qué un podcast o audio educativo con IA no debe presentarse de forma aislada, sino acompañado de una 'guía de preguntas' o 'mapa conceptual semi-mudo'?",
+          "respuesta": "Para transformar la escucha pasiva en un proceso de escucha activa y evaluación formativa, guiando la atención del estudiante hacia los conceptos críticos.",
+          "guia_docente": "Discutido en la Clase 4: el audio requiere mediación pedagógica activa."
+        },
+        {
+          "puntos": 300,
+          "pregunta": "En el desarrollo de la cápsula educativa web (Cátedra 2), ¿cuál fue el procedimiento para publicar la cápsula interactiva creada con IA en Google Sites?",
+          "respuesta": "Copiar el código interactivo generado por la IA (HTML/CSS/JS) e insertarlo en Google Sites mediante la opción 'Insertar -> Código / Embeber'.",
+          "guia_docente": "Visto paso a paso en la sesión 7 (tutorial práctico en Google Sites)."
+        },
+        {
+          "puntos": 400,
+          "pregunta": "¿Qué ventaja tiene evaluar mediante un 'Objeto Digital de Aprendizaje' o cápsula web interactiva frente a una guía estática en papel o PDF?",
+          "respuesta": "Permite retroalimentación inmediata, interactividad, autoverificación del avance del estudiante y enriquecimiento multimodal (audio, visual y actividades interactivas).",
+          "guia_docente": "Concepto de cápsula como recurso didáctico interactivo."
+        },
+        {
+          "puntos": 500,
+          "pregunta": "En la Cátedra 2 se solicitó una 'ficha reflexiva' junto a la cápsula web. ¿Por qué es fundamental este elemento reflexivo en proyectos educativos con IA?",
+          "respuesta": "Porque evidencia la intencionalidad pedagógica del docente: justifica por qué eligió esos contenidos, cómo evaluará el impacto y asegura que la IA se usó con propósito didáctico y no solo cosmético.",
+          "guia_docente": "La ficha reflexiva garantiza la metacognición del docente evaluador."
+        }
+      ]
+    },
+    {
+      "nombre": "Gamificación y Escape Rooms",
+      "descripcion": "Dinámicas lúdicas, retos progresivos, colaboración y evaluación auténtica",
+      "preguntas": [
+        {
+          "puntos": 100,
+          "pregunta": "¿Cuál es la diferencia conceptual entre 'Gamificación' (usar dinámicas de juego en entornos no lúdicos) y un 'Juego Serio' (Serious Game)?",
+          "respuesta": "La gamificación incorpora mecánicas aisladas (puntos, niveles, retos) en una actividad educativa; el juego serio o escape room es una experiencia lúdica completa con narrativa y reglas inmersivas.",
+          "guia_docente": "Visto en la Clase 8 al introducir el marco de gamificación."
+        },
+        {
+          "puntos": 200,
+          "pregunta": "En el diseño de un Escape Room educativo (para el Examen final), ¿cuál es la función pedagógica de la 'Narrativa' o historia conductora?",
+          "respuesta": "Contextualizar el desafío, generar inmersión emocional, darle sentido y coherencia a los enigmas y mantener alta la motivación intrínseca del grupo.",
+          "guia_docente": "La narrativa conecta los desafíos curriculares con un propósito estimulante."
+        },
+        {
+          "puntos": 300,
+          "pregunta": "¿Por qué en la Clase 8 se enfatizó que los retos de un Escape Room deben diseñarse preferentemente para resolverse de forma colaborativa y no individual?",
+          "respuesta": "Porque fomenta la discusión entre pares, la complementariedad de roles, la negociación de significados y evita que un solo estudiante monopolice la resolución.",
+          "guia_docente": "El escape room evalúa tanto contenidos como competencias de trabajo en equipo."
+        },
+        {
+          "puntos": 400,
+          "pregunta": "¿Por qué un Escape Room educativo se clasifica como una experiencia de 'Evaluación Auténtica'?",
+          "respuesta": "Porque sitúa a los estudiantes ante problemas contextualizados y situaciones verosímiles donde deben aplicar conocimientos en acción para superar obstáculos, en lugar de memorizar.",
+          "guia_docente": "Evaluación en acción y aplicación práctica del conocimiento."
+        },
+        {
+          "puntos": 500,
+          "pregunta": "¿Cómo puede el docente utilizar la IA generativa para diseñar el sistema de 'pistas progresivas' (andamiaje) en un juego o escape room?",
+          "respuesta": "Pidiéndole a la IA que para cada enigma genere 3 niveles de pistas: 1. Pista sutil de orientación, 2. Pista conceptual intermedia, y 3. Pista directa de procedimiento, evitando la frustración y garantizando el flujo.",
+          "guia_docente": "El andamiaje multinivel garantiza que ningún equipo quede bloqueado."
+        }
+      ]
+    }
+  ],
+  "final_jeopardy": {
+    "categoria": "El Futuro de la Evaluación y la Ética Docente con IA",
+    "pregunta": "Con el acceso masivo a herramientas de IA generativa capaces de resolver pruebas y redactar ensayos en segundos: ¿Hacia dónde debe evolucionar la evaluación en el aula para mantener su autenticidad y validez pedagógica?",
+    "respuesta_esperada": "Debe transitar de evaluar el producto final reproducible hacia evaluar el proceso de pensamiento, la defensa y argumentación oral, la toma de decisiones críticas, la resolución de problemas en tiempo real y la reflexión ética sobre las soluciones generadas.",
+    "criterios_evaluacion": [
+      "Mención de la transición de evaluar productos a evaluar procesos",
+      "Importancia de la argumentación, defensa oral o demostración práctica",
+      "Rol del juicio crítico y la ética docente frente al uso de IA"
+    ]
+  }
+}
